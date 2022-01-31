@@ -8,11 +8,10 @@ public:
         
         for(int i=0; i<r; i++) {
             int curr= 0;
-            for(int j=0; j<c; j++)
-            {
+            for(int j=0; j<c; j++) {
                 curr += accounts[i][j];
-                mx= max(mx, curr);
             }
+            mx= max(mx, curr);
         }
         return mx;
     }
