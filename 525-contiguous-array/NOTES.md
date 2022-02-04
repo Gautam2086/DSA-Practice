@@ -1,1 +1,1 @@
-​
+Here the idea is to just consider the zero as -1 and take the prefix sum and maintain a hashmap where the key is the prefixSum and value is its index. Whenever we see the prefixSum inside the hashmap, then we can update our maxLength = max(maxLength, i - map.get(prefixSum)). otherwise we just put the prefixSum and index to the hashmap.
