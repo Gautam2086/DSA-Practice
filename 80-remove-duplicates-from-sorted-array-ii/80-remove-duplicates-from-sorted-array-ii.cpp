@@ -1,3 +1,6 @@
+/*Just insert all the number in the map and calculate the frequency and if the frequency is greater than 2 then decrease it to 2.
+then Insert back map.first map.second number of times to the given vector.
+*/
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
