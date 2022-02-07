@@ -94,6 +94,17 @@ struct Node {
     Node* left;
     Node* right;
 };*/
+
+/* Algo: iterative way to get preorder traversal of binary tree
+
+Steps : 
+1. initial config : Take the root and put it in the 1st stack.
+2. Now, take the top from the 1st stack and put it into the 2nd stack
+3. After that, if the top in 2nd stack has left → add it in 1st stack.  And if the top in 2nd stack has right → add it in the 1st stack.
+4. Now again, take the top from the 1st stack and put it into the 2nd stack. Repeat step 2 & 3 untill 1st stack is empty.
+5. Pop the element from the 2nd stack and print.
+
+*/
 class Solution{
     public:
     vector<int> postOrder(Node* node) {
