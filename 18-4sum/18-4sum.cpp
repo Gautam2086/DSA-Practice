@@ -1,4 +1,6 @@
-// hash table and set O(N^2)
+/* hash table and set O(N^2)
+Intution : We take a unorederd map and then calculate 2 sum of all the possiblities of i and j pair and store it in the map besides there indexes and then we run a loop and for every i and j we do target - arr[i]-arr[j] and then try to find it in the map if it exists that means this is a possible answer qudraplet.
+*/
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
