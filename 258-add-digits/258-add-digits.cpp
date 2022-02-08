@@ -5,9 +5,6 @@ public:
     {
         if(num < 10)                        // base case
             return num;
-            
-        if(num / 10 == 0)
-            return num;
         
         long long sum= 0;
         while(num) {
