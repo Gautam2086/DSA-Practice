@@ -1,15 +1,15 @@
 class Solution {
 public:
+    // 1' to '9' is 48 to 57 in ASCII C++
     int numDifferentIntegers(string word) {
      
-        
         set<string> st;
         int n= word.size();
         
         for(int i=0; i<n; i++)
         {
             string tmp= "";
-            while(i<n && word[i] >= 48 && word[i] <=57) {
+            while(i<n && word[i]>=48 && word[i]<=57) {
                 tmp.push_back(word[i++]);
             }
             
