@@ -1,1 +1,1 @@
-​
+1' to '9' is 48 to 57 in ASCII C++
