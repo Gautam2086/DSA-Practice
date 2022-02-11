@@ -24,9 +24,9 @@ class Solution
             if(tmp.size()==0)
                 tmp = '0';
             
-            res += i<n ? tmp+'.' : tmp;
+            res += tmp+'.';
         }
-        //res= res.substr(0, res.length()-1);
+        res= res.substr(0, res.length()-1);
         return res;
     }
 };
