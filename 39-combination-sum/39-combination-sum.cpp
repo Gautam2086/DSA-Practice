@@ -4,19 +4,29 @@ class Solution {
 public:
     vector<vector<int>> res;
     
-    void solve(vector<int>& arr, int n, int w, vector<int> v) {
-        if(w==0) return res.push_back(v);
-        if(n==0) return;
-        solve(arr, n-1, w, v);
-        if(arr[n-1] <= w) {
-            v.push_back(arr[n-1]);
-            solve(arr, n, w-arr[n-1], v);
+    void solve(int i,int target, vector<int>& arr, vector<int>& v) {
+        
+        if(i == arr.size()) {
+            if(target == 0) {                        // we got a combination
+                res.push_back(v);                   // store combination
+            }
+            return;
         }
+        
+        // pick up the element 
+        if(arr[i] <= target) {
+            v.push_back(arr[i]);
+            solve(i, target-arr[i], arr, v);        // Unbounded knapsack
+            v.pop_back();                           // backtrack
+        }
+        // donot pick up the element
+        solve(i+1, target, arr, v);
     }
+    
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         
-        vector<int> v;
-        solve(candidates, candidates.size(), target, v);
+        vector<int> v;                              // to store combinations
+        solve(0, target, candidates, v);
         return res;
     }
 };
