@@ -1,27 +1,21 @@
 class Solution {
 public:
-    // Brute force: O(n^2)
+    // Optimised approach -> TC: O(n*logn), SC: O(1)
     int removeCoveredIntervals(vector<vector<int>>& intervals) {
         
-        int n= intervals.size();
+        sort(intervals.begin(), intervals.end());
         int ans= 0;
+        int left= -1, right= -1;
         
-        for(int i=0; i<n; i++)
+        for(auto v: intervals)
         {
-            if(intervals[i][0] != -1)
-            {
-                for(int j=0; j<n; j++) 
-                {
-                    if( i!=j && intervals[j][0] != -1 && intervals[j][0]>=intervals[i][0] &&                                 intervals[j][1] <= intervals[i][1]) 
-                    {
-                        // intervals[j] lies in intervals[i]
-                        intervals[j][0]= -1; // mark visited
-                        ans++;              
-                    }
-                }
+            if(v[0] > left && v[1] > right) {           // if not satisfying covered condition
+                left= v[0];
+                ans++;  
             }
-            
+            right= max(right, v[1]);    
         }
-        return n-ans;
+        
+        return ans;
     }
 };
