@@ -22,7 +22,7 @@ public:
 class Solution {
 public:
     
-    void edges(unordered_map<Node*, Node*>& mp) {
+    void edges(unordered_map<Node*, Node*>& mp) {       // make edges in new cloned nodes
         
         for(auto u : mp) {
             for(auto v : u.first->neighbors) {
@@ -39,7 +39,7 @@ public:
         
         for(auto v: curr->neighbors)
         {
-            if(vis.find(v) == vis.end()) 
+            if(vis.find(v) == vis.end())            // visited set
                 dfs(v, vis, mp);
         }
     }
