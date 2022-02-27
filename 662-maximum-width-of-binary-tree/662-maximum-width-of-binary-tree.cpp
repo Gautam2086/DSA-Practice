@@ -35,7 +35,7 @@ public:
                 TreeNode* node= p.first;
                 long idx= p.second;
                 
-                if(node->left)                              // In Binary Tree, idx= root node index
+                if(node->left)                              // In Binary Tree, idx=Parent node idx
                     q.push({node->left, 2*idx+1});          // left node= 2*idx+1   
                 if(node->right)                             // right node= 2*idx+2
                     q.push({node->right, 2*idx+2});         // and so on
