@@ -8,17 +8,16 @@ public:
         int res= 0;
         int n= nums.size();
         
-        for(int i=0; i<=n-3; i++)
+        vector<int> dp(n, 0);
+        
+        for(int i=2; i<n; i++)
         {
-            int diff= nums[i+1]-nums[i];
+            if(nums[i]-nums[i-1] == nums[i-1]-nums[i-2])
+                dp[i]= dp[i-1]+1;
+            else
+                dp[i]= 0;
             
-            for(int j=i+2; j<n; j++)
-            {
-                if(nums[j]-nums[j-1] == diff)
-                    res++;
-                else
-                    break;
-            }
+            res += dp[i];
         }
         
         return res;
