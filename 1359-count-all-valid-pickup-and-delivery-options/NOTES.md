@@ -1,1 +1,2 @@
-​
+https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/discuss/1823403/C%2B%2B-oror-Easy-To-Understand-oror-Full-Explanation-oror-Coimbanotrics
+https://www.youtube.com/watch?v=GVWIUk5eID8
