@@ -14,20 +14,9 @@ public:
         if(l1 == NULL)  return l2;                      // Edge case
         if(l2 == NULL)  return l1;                      // Edge case
                 
-        ListNode* ans;
-        ListNode* tail;
+        ListNode* ans= new ListNode(-1);                // dummy node
+        ListNode* tail= ans;
         
-        if(l1->val < l2->val) {
-            ans= l1;
-            tail= l1;
-            l1= l1->next;
-        }
-            
-        else {
-            ans= l2;
-            tail= l2;
-            l2= l2->next;
-        }
             
         while(l1 != NULL && l2 != NULL)                 // Merging
         {
@@ -49,6 +38,6 @@ public:
             tail->next= l1;
         
         
-        return ans;
+        return ans->next;
     }
 };
