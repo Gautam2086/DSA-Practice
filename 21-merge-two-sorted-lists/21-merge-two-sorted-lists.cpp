@@ -14,17 +14,41 @@ public:
         if(l1 == NULL)  return l2;                      // Edge case
         if(l2 == NULL)  return l1;                      // Edge case
                 
-        ListNode* res;                                  // merged list
-            
+        ListNode* ans;
+        ListNode* tail;
+        
         if(l1->val < l2->val) {
-            res= l1;
-            res->next= mergeTwoLists(l1->next, l2);     // recursion
+            ans= l1;
+            tail= l1;
+            l1= l1->next;
         }
+            
         else {
-            res= l2;
-            res->next= mergeTwoLists(l1, l2->next);     // recursion
+            ans= l2;
+            tail= l2;
+            l2= l2->next;
         }
-     
-        return res;
+            
+        while(l1 != NULL && l2 != NULL)                 // Merging
+        {
+            if(l1->val < l2->val) {
+                tail->next= l1;
+                tail= l1;
+                l1= l1->next;
+            }
+            else {
+                tail->next= l2;
+                tail= l2;
+                l2= l2->next;
+            }
+        }
+        
+        if(l1 == NULL)
+            tail->next= l2;
+        if(l2 == NULL)
+            tail->next= l1;
+        
+        
+        return ans;
     }
 };
