@@ -8,29 +8,34 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+// Brute force way: make vector and sort it
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
         vector<int> v;
         int n= lists.size();
         
-        for(int i=0; i<n; i++) 
-        {
+        for(int i=0; i<n; i++) {
             ListNode* head= lists[i];
-            while(head) {
+            
+            while(head != NULL) {
                 v.push_back(head->val);
                 head= head->next;
             }
         }
+        
         sort(v.begin(), v.end());
         
-        ListNode*  temp= new ListNode(0);
-        ListNode* head2= temp;
+        ListNode* h= new ListNode(0);
+        ListNode* tail= h;
         
         for(int i=0; i<v.size(); i++) {
-            temp->next= new ListNode(v[i]);
-            temp= temp->next;
+            tail->next= new ListNode(v[i]);
+            tail= tail->next;
         }
-        return head2->next;
+        
+        return h->next;
     }
 };
