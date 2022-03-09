@@ -11,37 +11,33 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        vector<int> v;
         
-        ListNode* tmp= head;
-        while(tmp) {
-            v.push_back(tmp->val);
-            tmp= tmp->next;
-        }
+        if(head==NULL || head->next==NULL)
+            return head;
         
-        unordered_map<int, int> mp;
-        for(auto n: v) {
-            mp[n]++;
-        }
+        ListNode* dummy= new ListNode(0);
+        dummy->next= head;
         
+        ListNode* prev= dummy;
         
-        v.clear();
-        
-        for(auto it: mp) 
+        while(head != NULL)
         {
-            if(it.second ==1)
-                v.push_back(it.first);
+            if(head->next!= NULL && prev->next != NULL && head->val != head->next->val) {
+                prev= prev->next;
+            }
+            
+            else if(head->next != NULL && head->val == head->next->val)
+            {
+                while(head->next != NULL && head->val == head->next->val) 
+                    head= head->next;
+
+                prev->next= head->next;
+                
+            }
+            
+            head= head->next;
         }
-        sort(v.begin(), v.end());
         
-        ListNode* h= new ListNode(0);
-        tmp = h;
-        
-        for(int i=0; i<v.size(); i++) {
-            tmp->next= new ListNode(v[i]);
-            tmp= tmp->next;
-        }
-        
-        return h->next;
+        return dummy->next;
     }
 };
