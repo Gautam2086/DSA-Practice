@@ -64,10 +64,9 @@ public:
             
         }
         
-        while(carry != 0) {
+        if(carry != 0) {
             temp->next= new ListNode (carry);
             temp= temp->next;
-            carry /= 10;
         }
          
         temp->next= NULL;
