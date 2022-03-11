@@ -6,39 +6,39 @@
  *     ListNode() : val(0), next(nullptr) {}
  *     ListNode(int x) : val(x), next(nullptr) {}
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * }; 
+ * };
  */
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
         if(!head || k== 0 ) return head;
-        vector<int> v;
         
-        ListNode* tmp= head;
-        
-        while(tmp) {
-            v.push_back(tmp->val);
-            tmp= tmp->next;
+        int len= 0;
+        ListNode* temp= head;
+        while(temp) {
+            len++;
+            temp= temp->next;
         }
         
-        if(k >= v.size())
-            k= k % v.size();
+        if(k>len)   k= k % len;
+        if(k== 0 || k==len) return head;
         
-        ListNode* dummy= new ListNode(0);
-        tmp= dummy;
-        
-        
-        reverse(v.begin(), v.end()-k);
-        reverse(v.end()-k, v.end());
-        
-        reverse(v.begin(), v.end());
-        
-        for(int i=0; i<v.size(); i++) {
-            tmp->next= new ListNode(v[i]);
-            tmp= tmp->next;
+        temp= head;
+        while(temp->next) {
+            temp= temp->next;
         }
-        tmp->next= NULL;
+        temp->next= head;
         
-        return dummy->next;
+        temp= head;
+        int currLen=1;
+        while(currLen != len-k)
+        {
+            temp= temp->next;
+            currLen++;
+        }
+        ListNode* newHead= temp->next;
+        temp->next= NULL;
+        
+        return newHead;
     }
 };
