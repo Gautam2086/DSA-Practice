@@ -12,23 +12,23 @@ public:
             
             string temp;
             
-            while(i < path.size() && path[i] != '/') {
+            while(i < path.size() && path[i] != '/') {  // Extract string between "/__/"
                 temp += path[i++];
             }
             
             if(temp == ".")
                 continue;
             
-            else if(temp == "..") {
+            else if(temp == "..") {     // means we have to go to previous parent directory
                 if(!st.empty())
                     st.pop();
             }
             
-            else  // if temp == "string"
+            else                        // if temp == "string"
                 st.push(temp);
         }
         
-        while(!st.empty())
+        while(!st.empty()) 
         {
             res = "/" + st.top() + res;
             st.pop();
