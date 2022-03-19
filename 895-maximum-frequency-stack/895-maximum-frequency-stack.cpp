@@ -2,7 +2,8 @@ class FreqStack {
 public:
     priority_queue<pair<int, pair<int, int>>> pq;   // freq, pos, value
     unordered_map<int, int> freq;                   // for finding frequency
-    int pos= 0;
+    int pos= 0;  
+// If there is a tie for the most frequent element, the element closest to the stack's top is removed and returned.
     
     FreqStack() {
     }
