@@ -9,14 +9,10 @@ public:
         for(int i=1; i<nums.size(); i++) {
             if(nums[i] < nums[i-1])              // dec
                 dec= 0;
-            else if(nums[i] > nums[i-1])         // inc
+            if(nums[i] > nums[i-1])             // inc
                 inc= 0;
-            
-            if(inc == 0 && dec == 0)
-                return false;
         }
-        // if(inc == 0 && dec == 0)
-        //     return false;
-        return true;
+
+        return inc || dec;
     }
 };
