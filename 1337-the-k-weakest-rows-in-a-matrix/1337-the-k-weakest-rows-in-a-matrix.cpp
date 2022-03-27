@@ -1,17 +1,28 @@
 class Solution {
 public:
+    int binary(vector<int> v) {         //no. of soldier using binary search on curr row
+        int lo= 0;
+        int hi= v.size()-1;
+        
+        while(lo<=hi)
+        {   
+            int mid= lo+(hi-lo) /2 ;
+            
+            if(v[mid] == 0)
+                hi= mid-1;
+            else
+                lo= mid+1;    
+        }
+        return lo;
+    }
+    
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
         
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; 
                                                         // min heap => {soldiers , ith row}
         
-        for(int i=0; i<mat.size(); i++)
-        {
-            int ones= 0;
-            for(int j=0; j<mat[0].size(); j++) {
-                if(mat[i][j] == 1)
-                    ones++;
-            }
+        for(int i=0; i<mat.size(); i++) {
+            int ones= binary(mat[i]);
             pq.push({ones, i});
         }
         
