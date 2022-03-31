@@ -1,0 +1,6 @@
+->the idea is that min max sum will lie in the range (max(nums[i]),sum(nums[i])) for(i=0 to n)
+->every time we find avg of this range and see how many intervals' sum exceed the avg
+->if there are more than "m" intervals, then we need to increase the bar becoz many intervals are demanding to get separated
+->if they are less than "m", then we need to lower the bar becoz very few intervals are willing to get separated
+->we will keep doing this until if reach a postn when exactly "m" intervals will get separated
+->at this point we will obvsly have lower bar=upper bar
