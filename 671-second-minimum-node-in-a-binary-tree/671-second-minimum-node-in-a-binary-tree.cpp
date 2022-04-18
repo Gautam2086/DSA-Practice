@@ -11,29 +11,28 @@
  */
 class Solution {
 public:
+    int min;
+    int ans = INT_MAX;
+    int ans_found = false; // Needed this because INT_MAX can also be the answer 
+    //[2,2,2147483647] => c++ INT_MAX value => 2147483647
     
-    void inorder(TreeNode* root, set<int>& s) {
-        if(!root)   return;
-        
-        inorder(root->left, s);
-        s.insert(root->val);
-        inorder(root->right, s);
-    }
-    
-    int findSecondMinimumValue(TreeNode* root) {
-        set<int> s;
-        vector<int> v;
-        
-        inorder(root, s);
-        
-        if(s.size() < 2) 
-            return -1;
-        
-        for(auto x: s) {
-            v.push_back(x);
+    void traverse(TreeNode* root) {
+        if (root == NULL) return;
+        if (min < root->val && root->val <= ans) {
+            ans = root->val;
+            ans_found = true;
+        } else if (root->val == min) {
+            traverse(root->left);
+            traverse(root->right);
         }
-        sort(v.begin(), v.end());
-    
-        return v[1];
+        return;
+    }
+    int findSecondMinimumValue(TreeNode* root) {
+        if (root == NULL) return -1;
+        if (root->left == NULL) return -1; 
+        // From question this implies root->right will also be equal to NULL
+        min = root->val;
+        traverse(root);
+        return ans_found ? ans : -1;
     }
 };
