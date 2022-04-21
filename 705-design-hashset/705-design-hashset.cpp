@@ -1,27 +1,43 @@
 /*
-- Make a freq array
-- inc freq of a key to 1 if add func is called
-- dec freq of a key to 2 if remove func is called
-- when contain func is called, return T if freq==1 else return F
+    Time Complexity: O(N/BucketSize)
+    Space Complexity: O(N)
 */
 class MyHashSet {
 public:
-
-    vector<int> freq;
+    int bucketSize= 123;
+    vector<int> bucket[123];
+    
     MyHashSet() {
-        freq.resize(1000001, 0);
     }
     
     void add(int key) {
-        freq[key]= 1;
+        int idx= key % bucketSize;
+        if(!contains(key)) {
+            bucket[idx].push_back(key);
+        }
     }
     
     void remove(int key) {
-        freq[key]= 0;
+        int idx= key % bucketSize;
+        
+        for(int i=0; i<bucket[idx].size(); i++)
+        {
+            if(bucket[idx][i] == key)
+            {
+                bucket[idx].erase(bucket[idx].begin() + i);
+                break;
+            }   
+        }
     }
     
     bool contains(int key) {
-        return freq[key]==1;
+        int idx= key % bucketSize;
+        
+        for(auto itr: bucket[idx]) {
+            if(itr == key)
+                return true;
+        }
+        return false;
     }
 };
 
