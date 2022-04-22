@@ -36,7 +36,7 @@ public:
       vector<int> arr1= arr;
       int n= arr1.size();
 
-      for(int curr_size= n; curr_size >0; curr_size--)
+      for(int curr_size= n; curr_size>1; curr_size--)
       {
 
         int mxIdx= maxElement(arr1, curr_size);
