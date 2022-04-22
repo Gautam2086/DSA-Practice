@@ -6,7 +6,7 @@
 class MyHashMap {
 public:
     vector<pair<int,int>> v;
-    //vector<int> v[100001];
+    
     MyHashMap() {
     }
     
@@ -23,17 +23,12 @@ public:
         return -1;
     }
     
-    void remove(int key) {
+    void remove(int key) 
+    {
         if(get(key) != -1)
         {
             vector<pair<int,int>> :: iterator it;
-            // for(auto itr:v) 
-            // {
-            //     if(itr.first == key) {
-            //         v.erase(itr);
-            //         return;
-            //     }
-            // }
+            
             for(it = v.begin(); it != v.end(); it++){
                 if(it->first == key)
                 {
