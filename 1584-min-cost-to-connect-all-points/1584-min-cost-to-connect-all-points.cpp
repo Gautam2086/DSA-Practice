@@ -9,7 +9,7 @@ public:
         int n= points.size();
         
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
-        vector<vector<pair<int,int>>> graph(n);
+        vector<pair<int,int>> graph[n];
         
         for(int i=0; i<n; i++) {
             for(int j=i+1; j<n; j++) {
