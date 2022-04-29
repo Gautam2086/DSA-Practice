@@ -1,0 +1,1 @@
+Bipartite graph: A graph that can be colored using 2 colors such that no two adjacent nodes have same colors.
