@@ -1,7 +1,7 @@
 class Solution {
 public:
     // TC: O(m+n)
-    // SC: O(m+n)
+    // SC: O(1)
     bool backspaceCompare(string s, string t) {
         int i= s.length()-1;
         int j= t.length()-1;
