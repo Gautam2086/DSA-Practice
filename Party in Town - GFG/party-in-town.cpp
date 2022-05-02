@@ -14,8 +14,7 @@ public:
 
     void dfs(int src, vector<vector<int>> &adj, vector<bool>& vis,  vector<int>& dis) {
         
-        //vis[src] = true;
-        
+        vis[src] = true;
         for(auto x: adj[src]) {
             if(!vis[x]) {
                 vis[x]= true;
@@ -36,7 +35,6 @@ public:
             
             if(vis[i] == false) {
                 dis[i] = 0;
-                vis[i] = true;
                 dfs(i, adj, vis, dis);
             }
             
