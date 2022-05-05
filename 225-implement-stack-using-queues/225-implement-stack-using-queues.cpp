@@ -1,44 +1,43 @@
 /*
-Steps:
-- Insert in Q1
-- Push remaining ele of Q2 in Q1
-- Swap Q1 & Q2
+Steps: using 1 queue
+- insert in Q1
+- take size-1 element from front of existing queue and insert them at back of queue
 */
 class MyStack {
 public:
-    queue<int> q1;
-    queue<int> q2;
+    queue<int> q;
+    
     MyStack() {
         
     }
+    
     void push(int x) {
-        q1.push(x);
-        while(!q2.empty())
-        {
-            q1.push(q2.front());
-            q2.pop();
+        q.push(x);
+        int sz= q.size()-1;
+        
+        while(sz--) {
+            q.push(q.front());
+            q.pop();
         }
-        swap(q1, q2);
     }
     
     int pop() {
         int ans;
-        if(q2.empty()) {
+        if(q.empty())
             ans= -1;
-        }
         else {
-            ans= q2.front();
-            q2.pop();
+            ans= q.front();
+            q.pop();
         }
         return ans;
     }
     
     int top() {
-        return q2.front();
+        return q.front();
     }
     
     bool empty() {
-        return q2.empty();
+        return q.empty();
     }
 };
 
