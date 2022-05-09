@@ -4,7 +4,7 @@ public:
     vector<string> v= {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};   
     // mapping of digits to letters
     
-    void helper(string digits, string op) {
+    void helper(string& digits, string op) {
         
         if(digits.size() == 0) {
             res.push_back(op);
