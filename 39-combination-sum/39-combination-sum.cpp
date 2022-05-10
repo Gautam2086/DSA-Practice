@@ -1,32 +1,29 @@
-// Idea is to use Unbounded Knapsack and check all possible value by accepting and rejecting combination
-
 class Solution {
 public:
     vector<vector<int>> res;
     
-    void solve(int i,int target, vector<int>& arr, vector<int>& v) {
-        
-        if(i == arr.size()) {
-            if(target == 0) {                        // we got a combination
-                res.push_back(v);                   // store combination
-            }
+    void helper(int i, int target, vector<int>& arr, vector<int>& v) {
+        if(i==arr.size())
+        {
+            if(target == 0)
+                res.push_back(v);
             return;
         }
         
-        // pick up the element 
+        // pickup element
         if(arr[i] <= target) {
             v.push_back(arr[i]);
-            solve(i, target-arr[i], arr, v);        // Unbounded knapsack
-            v.pop_back();                           // backtrack
+            helper(i, target-arr[i], arr, v);
+            v.pop_back();
         }
-        // donot pick up the element
-        solve(i+1, target, arr, v);
-    }
-    
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        // Ignore element
         
-        vector<int> v;                              // to store combinations
-        solve(0, target, candidates, v);
+        helper(i+1, target, arr, v);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> v;
+        
+        helper(0, target, candidates, v);
         return res;
     }
 };
