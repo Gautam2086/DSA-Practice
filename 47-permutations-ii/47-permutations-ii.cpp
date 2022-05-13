@@ -1,33 +1,28 @@
 class Solution {
 public:
-    //https://www.youtube.com/watch?v=is_T6uzlTyg
-    void permutations(vector<int> &nums, int i, vector<vector<int>> &ans)
-    {
-        if(i== nums.size()){
-            ans.push_back(nums);
+    vector<vector<int>> res;
+    set<vector<int>> s;
+    
+    void helper(int i, vector<int>& nums) {
+        
+        if(i == nums.size()) {
+            s.insert(nums);
             return;
         }
         
-        unordered_map<int,int> mp;
-        
-        for(int j=i; j<nums.size(); j++){
-            if(mp.find(nums[j])!= mp.end())
-                continue;
-            mp.insert({nums[j],1});      //AsSoonAs we put no. at ith place we add it in map
-            swap(nums[i],nums[j]);       //Keeping all numbers on each ith place from 1 to N
-            permutations(nums,i+1,ans);
-            swap(nums[i],nums[j]);       //Backtack as we have swapped in original
+        for(int j=i; j<nums.size(); j++) {
+            swap(nums[i], nums[j]);
+            helper(i+1, nums);
+            swap(nums[i], nums[j]);             // Backtrack
         }
     }
     
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-  
-       vector<vector<int>> ans;
-        int n= nums.size();
-        if(n<= 1){
-            return {nums};
+        helper(0, nums);
+        
+        for(auto v: s) {
+            res.push_back(v);
         }
-        permutations(nums,0,ans);
-        return ans;        
+        return res;
     }
 };
