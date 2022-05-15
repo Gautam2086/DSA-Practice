@@ -14,15 +14,16 @@ public:
     int ans= INT_MIN;
     
     void helper(TreeNode* root, int depth) {
-        if(root == NULL)
-            return;
+        if(!root)   return;
         
-        if(root->left==NULL && root->right==NULL)
-            ans= max(ans, depth);
+        if(!root->left && !root->right)
+            ans= max(depth, ans);
+        
         if(root->left)
             helper(root->left, depth+1);
         if(root->right)
             helper(root->right, depth+1);
+        
     }
     
     
