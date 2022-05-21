@@ -1,1 +1,1 @@
-​
+INT_MAX-1 is nice trick to avoid overflow
