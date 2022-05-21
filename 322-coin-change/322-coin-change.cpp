@@ -1,40 +1,29 @@
 class Solution {
 public:
-    int coinChange(vector<int>& coins, int amount)
-    {
-        int n= coins.size();
-        int t[n+1][amount+1];
+    int knapsack(int i, vector<int>& coins, int amount, vector<vector<int>>& dp) {
         
-        for(int i=0; i<n+1; i++) {              // initialize 0th column
-            t[i][0]=0;                          // when coin array is 0
-        } 
-        for(int j=1; j<amount+1; j++) {         // initialize 0th row
-            t[0][j]= INT_MAX-1;                 // when amount is 0
-        }
+        if(i>=coins.size() && amount == 0)                  // Base case when amt==0
+            return 0;   
         
-        for(int i=1,j=1; j<amount+1; j++)       // initialize 1st row
-        {
-            if(j % coins[0] ==0)
-                t[i][j]= j/coins[0];
-            else
-                t[i][j]= INT_MAX-1;
-        }
+        if(i>=coins.size())                                 // we aint able to make upto amt           
+            return INT_MAX-1;                               // so we need INT_MAX coins
         
-        for(int i=2; i<n+1; i++)
-        {
-            for(int j=1; j<amount+1; j++)
-            {
-                if(coins[i-1] <= j)
-                    t[i][j]=min(1+t[i][j-coins[i-1]], t[i-1][j] );
-                else
-                    t[i][j]= t[i-1][j];
-            }
-        }
+        if(dp[i][amount] != -1)
+            return dp[i][amount];
         
-    // If that amount of money cannot be made up by any combination of the coins
-        if(t[n][amount] == INT_MAX-1)       
-            return -1;
-        else
-            return t[n][amount];
+        if(coins[i] > amount)                               // check of coin[i] > amt
+            return dp[i][amount]= knapsack(i+1, coins, amount, dp);
+        else                                                // reutrn min of both conditions
+            return dp[i][amount]= min(1+knapsack(i, coins, amount-coins[i], dp), 
+                                        knapsack(i+1, coins, amount, dp));
+        
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        if(amount == 0)
+            return 0;
+        vector<vector<int>> dp(coins.size()+1, vector<int>(amount+1, -1));
+        
+        int ans= knapsack(0, coins, amount, dp);
+        return (ans==INT_MAX-1) ? -1 : ans;
     }
 };
