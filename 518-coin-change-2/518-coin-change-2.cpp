@@ -16,9 +16,9 @@ public:
         int ways2= 0; 
         
         if(coins[i] <= amount)                               // check of coin[i] <= amt
-            ways1 = helper(i, coins, amount-coins[i], dp); 
+            ways1 += helper(i, coins, amount-coins[i], dp); 
 
-        ways2 = helper(i+1, coins, amount, dp);              // this optn is always available
+        ways2 += helper(i+1, coins, amount, dp);              // this optn is always available
         
         return dp[i][amount]= ways1+ways2;
     }
