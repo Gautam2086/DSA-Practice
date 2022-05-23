@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // bottom up DP
     int findMaxForm(vector<string>& strs, int m, int n) 
     {
         int i, j;
