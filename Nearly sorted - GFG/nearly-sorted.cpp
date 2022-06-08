@@ -8,12 +8,25 @@ class Solution
 {
     public:
     //Function to return the sorted array.
+    // TC: O(n&)
     vector <int> nearlySorted(int arr[], int num, int K){
-        vector <int>v;
+        
+        priority_queue<int, vector<int>, greater<int>> pq;          // min heap
+        vector<int> v;
+        int j= 0;
+        
         for(int i=0; i<num; i++) {
-            v.push_back(arr[i]);
+            pq.push(arr[i]);
+            
+            if(pq.size() > K) {
+                v.push_back(pq.top());
+                pq.pop();
+            }
         }
-        sort(v.begin(), v.end());
+        while(pq.size() != 0) {
+            v.push_back(pq.top());
+            pq.pop();
+        }
         return v;
     }
 };
